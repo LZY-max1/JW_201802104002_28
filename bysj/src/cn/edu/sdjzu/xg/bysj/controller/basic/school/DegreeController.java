@@ -45,7 +45,7 @@ public class DegreeController extends HttpServlet {
         //将JSON字串解析为Degree对象
         Degree degreeToAdd = JSON.parseObject(degree_json, Degree.class);
         //前台没有为id赋值，此处模拟自动生成id。如果Dao能真正完成数据库操作，删除下一行。
-        degreeToAdd.setId(4 + (int)(Math.random()*100));
+        //degreeToAdd.setId(4 + (int)(Math.random()*100));
 
         //设置响应字符编码为UTF-8
         response.setContentType("text/html;charset=UTF-8");
@@ -57,8 +57,10 @@ public class DegreeController extends HttpServlet {
             message.put("message", "增加成功");
         }catch (SQLException e){
             message.put("message", "数据库操作异常");
+            e.printStackTrace();
         }catch(Exception e){
             message.put("message", "网络异常");
+            e.printStackTrace();
         }
         //响应message到前端
         response.getWriter().println(message);
@@ -125,8 +127,10 @@ public class DegreeController extends HttpServlet {
             message.put("message", "修改成功");
         }catch (SQLException e){
             message.put("message", "数据库操作异常");
+            e.printStackTrace();
         }catch(Exception e){
             message.put("message", "网络异常");
+            e.printStackTrace();
         }
         //响应message到前端
         response.getWriter().println(message);
